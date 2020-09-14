@@ -14,7 +14,7 @@ export function Button(props: ButtonPropsType) {
             <button
                 onClick={props.onClickCallBack}
                 disabled={props.disable}
-                className={`${styles.button} ${props.counter === props.maxNumber && props.disable || props.disable ? styles.red : ""}`}
+                className={`${styles.button} ${props.counter === props.maxNumber && props.disable ? styles.red : "" || props.disable ? styles.red : ""}`}
             >{props.name}</button>
     </div>
 }
