@@ -1,14 +1,17 @@
 import React from "react";
 import {Display} from "../Display/Display";
-import {Button} from "../Button/Button";
+import {ButtonCounter} from "../ButtonCounter/ButtonCounter";
 import styles from "./Counter.module.css"
+import {CounterSettings} from "../CounterSettings/CounterSettings";
 
 type CounterPropsType = {
     counter: number
     increment: () => void
     reset: () => void
-    maxNumber: number
-    minNumber: number
+    maxValue: number
+    startValue: number
+    min: number
+    max: number
 }
 
 export function Counter(props: CounterPropsType) {
@@ -16,18 +19,25 @@ export function Counter(props: CounterPropsType) {
     return <div className={styles.counter}>
         <Display
             counter={props.counter}
-            maxNumber={props.maxNumber}/>
-        <Button
+            maxNumber={props.maxValue}
+            min={props.min}
+            max={props.max}
+            startValue={props.startValue}
+        />
+        <ButtonCounter
             onClickCallBack={props.increment}
-            disable={props.counter === props.maxNumber}
+            disable={props.counter === props.maxValue}
             counter={props.counter}
-            maxNumber={props.maxNumber}
-            name="Inc"/>
-        <Button
+            maxNumber={props.maxValue}
+            name="Inc"
+        />
+        <ButtonCounter
             onClickCallBack={props.reset}
-            disable={props.counter === props.minNumber}
+            disable={props.counter === props.startValue}
             counter={props.counter}
-            maxNumber={props.maxNumber}
-            name="Reset"/>
+            maxNumber={props.maxValue}
+            name="Reset"
+        />
+
     </div>
 }

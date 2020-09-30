@@ -1,0 +1,25 @@
+.wrapperCounterSet {
+    border: 2px solid red;
+    margin: 30px;
+    padding: 30px;
+}
+
+.wrapperCounterSet input {
+    margin-bottom: 10px;
+}
+
+.wrapperCounterSetInput{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.incorrectValue {
+    border: 2px solid red;
+    background: lightcoral;
+}
+
+.wrapperCounterSet input:active, input:focus{
+    outline: none;
+}
+
