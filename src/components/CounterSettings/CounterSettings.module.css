@@ -1,6 +1,6 @@
 .wrapperCounterSet {
-    border: 2px solid red;
-    margin: 30px;
+    border: 1px solid lightblue;
+    border-radius: 30px;
     padding: 30px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .incorrectValue {
-    border: 2px solid red;
+    border: 1px solid red;
     background: lightcoral;
 }
 

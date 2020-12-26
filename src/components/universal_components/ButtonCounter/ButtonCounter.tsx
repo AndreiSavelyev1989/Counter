@@ -11,6 +11,7 @@ type ButtonPropsType = {
 }
 
 export function ButtonCounter(props: ButtonPropsType) {
+    console.log('ButtonCounter rendered')
     return <div className={styles.button_wrapper}>
             <Button
                 variant="contained"

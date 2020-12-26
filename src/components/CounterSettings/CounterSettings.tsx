@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import styles from "./CounterSettings.module.css"
-import {ButtonCounter} from "../ButtonCounter/ButtonCounter";
+import {ButtonCounter} from "../universal_components/ButtonCounter/ButtonCounter";
+import {InputCounter} from "../universal_components/InputCounter/InputCounter";
 
 type CounterSettingsPropsType = {
     min: number
@@ -11,7 +12,7 @@ type CounterSettingsPropsType = {
 }
 
 export function CounterSettings(props: CounterSettingsPropsType) {
-
+    console.log('CounterSettings rendered')
     const onChangeStartCounterValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.startValueChange(+e.currentTarget.value)
     }
@@ -23,19 +24,21 @@ export function CounterSettings(props: CounterSettingsPropsType) {
     return (
         <div className={styles.wrapperCounterSet}>
             <div className={styles.wrapperCounterSetInput}>
-                <span>Max value: </span><input
-                type="number"
-                onChange={onChangeMaxCounterValue}
-                value={props.max}
-                className={props.max < 0 || props.max === props.min ? styles.incorrectValue : ""}
-            />
+                <span>Max value: </span>
+                <InputCounter
+                    inputType={"number"}
+                    onChangeCallBack={onChangeMaxCounterValue}
+                    inputValue={props.max}
+                    className={props.max < 0 || props.max === props.min ? styles.incorrectValue : ""}
+                />
 
-                <span>Start value: </span><input
-                type="number"
-                onChange={onChangeStartCounterValue}
-                value={props.min}
-                className={props.min < 0 || props.min === props.max ? styles.incorrectValue : ""}
-            />
+                <span>Start value: </span>
+                <InputCounter
+                    inputType={"number"}
+                    onChangeCallBack={onChangeStartCounterValue}
+                    inputValue={props.min}
+                    className={props.min < 0 || props.min === props.max || props.min > props.max ? styles.incorrectValue : ""}/>
+
                 <ButtonCounter
                     onClickCallBack={onClickSetValueSettings}
                     name={"set"}

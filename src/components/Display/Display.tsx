@@ -7,22 +7,24 @@ type DisplayPropsType = {
     min: number
     max: number
     startValue: number
+    maxValue: number
 }
 
 export function Display(props: DisplayPropsType) {
+    console.log('Display rendered')
     const displayResult = () => {
-
         if (props.min < 0 || props.max < 0 || props.min === props.max || props.max < props.min) {
-            return "Incorrect value!"
-        }
-        else if (props.startValue === props.min) {
+            return <div className={styles.incorrectValue}>"Incorrect value!"</div>
+        } else if (props.startValue === props.min && props.maxValue === props.max) {
             return props.counter
-        }
-        else{
+        } else {
             return "Enter values and press 'set'!"
         }
     }
-    return <div className={`${styles.display} ${props.counter === props.maxNumber ? styles.displayRed : ""}`}>
+    return <div className={`${styles.display} 
+    ${props.counter === props.maxNumber ? styles.displayRed : ""}
+    ${props.min < 0 || props.max < 0 || props.min === props.max || props.max < props.min ? styles.displayRed : ""}
+    `}>
         <div className={props.counter === props.maxNumber ? styles.red : ""}>
             {displayResult()}
         </div>

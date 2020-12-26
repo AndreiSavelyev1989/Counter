@@ -2,19 +2,32 @@ import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {CounterSettings} from "./components/CounterSettings/CounterSettings";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {
+    incrementAC,
+    resetAC,
+    setCounterAC,
+    setMaxCounterValueAC,
+    setStartCounterValueAC
+} from "./state/counter-reducer";
 
 function App() {
-    let [counter, setCounter] = useState<number>(0)
-    let [startValue, setStartValue] = useState<number>(0)
-    let [maxValue, setMaxValue] = useState<number>(5)
-    let [max, setMax] = useState<number>(maxValue)
-    let [min, setMin] = useState<number>(startValue)
+    console.log('App rendered')
+    const counter: number = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const startValue: number = useSelector<AppRootStateType, number>(state => state.counter.startCounterValue)
+    const maxValue: number = useSelector<AppRootStateType, number>(state => state.counter.maxCounterValue)
+
+    const [max, setMax] = useState<number>(maxValue)
+    const [min, setMin] = useState<number>(startValue)
+
+    const dispatch = useDispatch()
 
     const increment = () => {
-        setCounter(counter + 1)
+        dispatch(incrementAC(counter + 1))
     }
     const reset = () => {
-        setCounter(startValue)
+        dispatch(resetAC(startValue))
     }
 
     const startValueChange = (value: number) => {
@@ -25,9 +38,9 @@ function App() {
     }
 
     const setValueSettings = () => {
-        setStartValue(min)
-        setCounter(min)
-        setMaxValue(max)
+        dispatch(setStartCounterValueAC(min))
+        dispatch(setCounterAC(min))
+        dispatch(setMaxCounterValueAC(max))
     }
 
     return (
