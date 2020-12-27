@@ -10,7 +10,7 @@ type ButtonPropsType = {
     maxNumber?: number
 }
 
-export function ButtonCounter(props: ButtonPropsType) {
+export const ButtonCounter = React.memo((props: ButtonPropsType) => {
     console.log('ButtonCounter rendered')
     return <div className={styles.button_wrapper}>
             <Button
@@ -21,4 +21,4 @@ export function ButtonCounter(props: ButtonPropsType) {
                 // className={`${styles.button} ${props.counter === props.maxNumber && props.disable ? styles.red : "" || props.disable ? styles.red : ""}`}
             >{props.name}</Button>
     </div>
-}
+})

@@ -7,7 +7,7 @@ type InputCounterPropsType = {
     className: any
 }
 
-export function InputCounter(props: InputCounterPropsType) {
+export const InputCounter = React.memo((props: InputCounterPropsType) => {
     console.log('InputCounter rendered')
     return (
         <input
@@ -17,4 +17,4 @@ export function InputCounter(props: InputCounterPropsType) {
             className={props.className}
         />
     )
-}
+})

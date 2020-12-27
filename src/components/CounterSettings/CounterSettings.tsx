@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import styles from "./CounterSettings.module.css"
 import {ButtonCounter} from "../universal_components/ButtonCounter/ButtonCounter";
 import {InputCounter} from "../universal_components/InputCounter/InputCounter";
@@ -11,15 +11,15 @@ type CounterSettingsPropsType = {
     setValueSettings: () => void
 }
 
-export function CounterSettings(props: CounterSettingsPropsType) {
+export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
     console.log('CounterSettings rendered')
-    const onChangeStartCounterValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeStartCounterValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         props.startValueChange(+e.currentTarget.value)
-    }
-    const onChangeMaxCounterValue = (e: ChangeEvent<HTMLInputElement>) => {
+    }, [props.startValueChange])
+    const onChangeMaxCounterValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         props.maxValueChange(+e.currentTarget.value)
-    }
-    const onClickSetValueSettings = () => props.setValueSettings()
+    }, [props.maxValueChange])
+    const onClickSetValueSettings = useCallback(() => props.setValueSettings(), [props.setValueSettings])
 
     return (
         <div className={styles.wrapperCounterSet}>
@@ -47,4 +47,4 @@ export function CounterSettings(props: CounterSettingsPropsType) {
             </div>
         </div>
     )
-}
+})

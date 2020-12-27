@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {CounterSettings} from "./components/CounterSettings/CounterSettings";
@@ -12,7 +12,7 @@ import {
     setStartCounterValueAC
 } from "./state/counter-reducer";
 
-function App() {
+const App = React.memo(() => {
     console.log('App rendered')
     const counter: number = useSelector<AppRootStateType, number>(state => state.counter.counter)
     const startValue: number = useSelector<AppRootStateType, number>(state => state.counter.startCounterValue)
@@ -21,27 +21,30 @@ function App() {
     const [max, setMax] = useState<number>(maxValue)
     const [min, setMin] = useState<number>(startValue)
 
+
+
     const dispatch = useDispatch()
 
-    const increment = () => {
+    const increment = useCallback(() => {
         dispatch(incrementAC(counter + 1))
-    }
-    const reset = () => {
+    }, [dispatch, counter])
+
+    const reset = useCallback(() => {
         dispatch(resetAC(startValue))
-    }
+    }, [dispatch, startValue])
 
-    const startValueChange = (value: number) => {
+    const startValueChange = useCallback((value: number) => {
         setMin(value)
-    }
-    const maxValueChange = (value: number) => {
+    }, [])
+    const maxValueChange = useCallback((value: number) => {
         setMax(value)
-    }
+    }, [])
 
-    const setValueSettings = () => {
+    const setValueSettings = useCallback(() => {
         dispatch(setStartCounterValueAC(min))
         dispatch(setCounterAC(min))
         dispatch(setMaxCounterValueAC(max))
-    }
+    }, [dispatch, min, max])
 
     return (
         <div className="App">
@@ -62,6 +65,6 @@ function App() {
             />
         </div>
     );
-}
+})
 
 export default App;

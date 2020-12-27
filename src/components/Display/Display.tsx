@@ -10,7 +10,7 @@ type DisplayPropsType = {
     maxValue: number
 }
 
-export function Display(props: DisplayPropsType) {
+export const Display = React.memo((props: DisplayPropsType) => {
     console.log('Display rendered')
     const displayResult = () => {
         if (props.min < 0 || props.max < 0 || props.min === props.max || props.max < props.min) {
@@ -29,4 +29,4 @@ export function Display(props: DisplayPropsType) {
             {displayResult()}
         </div>
     </div>
-}
+})

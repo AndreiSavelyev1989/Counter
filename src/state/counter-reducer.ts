@@ -12,9 +12,9 @@ const initialState: CounterType = {
 
 export const counterReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
-        case "INCREMENT":
+        case "INCREMENT-COUNTER_VALUE":
             return {...state, counter: action.counter}
-        case "RESET":
+        case "RESET-COUNTER_VALUE":
             return {...state, counter: action.counter}
         case "SET-START-COUNTER-VALUE":
             return {...state, startCounterValue: action.value}
@@ -33,8 +33,8 @@ type ActionsType =
     | ReturnType<typeof setMaxCounterValueAC>
     | ReturnType<typeof setCounterAC>
 
-export const incrementAC = (counter: number) => ({type: 'INCREMENT', counter} as const)
-export const resetAC = (counter: number) => ({type: 'RESET', counter} as const)
+export const incrementAC = (counter: number) => ({type: 'INCREMENT-COUNTER_VALUE', counter} as const)
+export const resetAC = (counter: number) => ({type: 'RESET-COUNTER_VALUE', counter} as const)
 export const setStartCounterValueAC = (value: number) => ({type: 'SET-START-COUNTER-VALUE', value} as const)
 export const setMaxCounterValueAC = (value: number) => ({type: 'SET-MAX-COUNTER-VALUE', value} as const)
 export const setCounterAC = (value: number) => ({type: 'SET-COUNTER', value} as const)

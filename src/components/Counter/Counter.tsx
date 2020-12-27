@@ -13,7 +13,7 @@ type CounterPropsType = {
     max: number
 }
 
-export function Counter(props: CounterPropsType) {
+export const Counter = React.memo((props: CounterPropsType) => {
     console.log('Counter rendered')
     return <div className={styles.counter}>
         <Display
@@ -40,4 +40,4 @@ export function Counter(props: CounterPropsType) {
         />
 
     </div>
-}
+})
