@@ -21,7 +21,22 @@ const App = React.memo(() => {
     const [max, setMax] = useState<number>(maxValue)
     const [min, setMin] = useState<number>(startValue)
 
+    const handleClick = () => console.log('click')
+    useEffect(() => {
+        const minValue = localStorage.getItem('minValue')
+        const maxValue = localStorage.getItem('maxValue')
+        setMin(Number(minValue))
+        setMax(Number(maxValue))
+    }, [])
 
+    useEffect(() => {
+        document.addEventListener('click', handleClick)
+        localStorage.setItem('minValue', min.toString())
+        localStorage.setItem('maxValue', max.toString())
+        return () => {
+            document.removeEventListener('click', handleClick)
+        }
+    }, [min, max])
 
     const dispatch = useDispatch()
 
