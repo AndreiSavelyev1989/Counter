@@ -7,13 +7,14 @@ import {AppRootStateType} from "./state/store";
 import {
     incrementAC,
     resetAC,
-    setCounterAC,
-    setMaxCounterValueAC,
-    setStartCounterValueAC
+    setStartCounterValueAC,
+    setMaxCounterSettingsValueAC,
+    setStartCounterSettingsValueAC
 } from "./state/counter-reducer";
 
 const App = React.memo(() => {
     console.log('App rendered')
+
     const counter: number = useSelector<AppRootStateType, number>(state => state.counter.counter)
     const startValue: number = useSelector<AppRootStateType, number>(state => state.counter.startCounterValue)
     const maxValue: number = useSelector<AppRootStateType, number>(state => state.counter.maxCounterValue)
@@ -56,9 +57,9 @@ const App = React.memo(() => {
     }, [])
 
     const setValueSettings = useCallback(() => {
+        dispatch(setStartCounterSettingsValueAC(min))
+        dispatch(setMaxCounterSettingsValueAC(max))
         dispatch(setStartCounterValueAC(min))
-        dispatch(setCounterAC(min))
-        dispatch(setMaxCounterValueAC(max))
     }, [dispatch, min, max])
 
     return (

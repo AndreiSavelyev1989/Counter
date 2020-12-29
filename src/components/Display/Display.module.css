@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
+    max-width: 300px;
     height: 150px;
-    border: 1px solid lightblue;
-    margin-left: 21px;
+    border: 2px solid lightblue;
+    margin-left: 18px;
     margin-top: 25px;
     border-radius: 10px;
     font-size: xx-large;

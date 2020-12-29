@@ -1,8 +1,7 @@
 .counter {
-    width: 350px;
-    height: 285px;
+    max-width: 350px;
+    max-height: 285px;
     border: 2px solid lightblue;
-    /*margin: 100px auto;*/
     background: transparent;
     border-radius: 10px;
 }

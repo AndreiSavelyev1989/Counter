@@ -13,14 +13,14 @@ const initialState: CounterType = {
 export const counterReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case "INCREMENT-COUNTER_VALUE":
-            return {...state, counter: action.counter}
+            return {...state, counter: action.value}
         case "RESET-COUNTER_VALUE":
-            return {...state, counter: action.counter}
-        case "SET-START-COUNTER-VALUE":
+            return {...state, counter: action.value}
+        case "SET-START-COUNTER-SETTINGS-VALUE":
             return {...state, startCounterValue: action.value}
-        case "SET-MAX-COUNTER-VALUE":
+        case "SET-MAX-COUNTER-SETTINGS-VALUE":
             return {...state, maxCounterValue: action.value}
-        case "SET-COUNTER":
+        case "SET-START-COUNTER-VALUE":
             return {...state, counter: action.value}
         default:
             return state
@@ -29,12 +29,12 @@ export const counterReducer = (state = initialState, action: ActionsType) => {
 type ActionsType =
     | ReturnType<typeof incrementAC>
     | ReturnType<typeof resetAC>
+    | ReturnType<typeof setStartCounterSettingsValueAC>
+    | ReturnType<typeof setMaxCounterSettingsValueAC>
     | ReturnType<typeof setStartCounterValueAC>
-    | ReturnType<typeof setMaxCounterValueAC>
-    | ReturnType<typeof setCounterAC>
 
-export const incrementAC = (counter: number) => ({type: 'INCREMENT-COUNTER_VALUE', counter} as const)
-export const resetAC = (counter: number) => ({type: 'RESET-COUNTER_VALUE', counter} as const)
+export const incrementAC = (value: number) => ({type: 'INCREMENT-COUNTER_VALUE', value} as const)
+export const resetAC = (value: number) => ({type: 'RESET-COUNTER_VALUE', value} as const)
+export const setStartCounterSettingsValueAC = (value: number) => ({type: 'SET-START-COUNTER-SETTINGS-VALUE', value} as const)
+export const setMaxCounterSettingsValueAC = (value: number) => ({type: 'SET-MAX-COUNTER-SETTINGS-VALUE', value} as const)
 export const setStartCounterValueAC = (value: number) => ({type: 'SET-START-COUNTER-VALUE', value} as const)
-export const setMaxCounterValueAC = (value: number) => ({type: 'SET-MAX-COUNTER-VALUE', value} as const)
-export const setCounterAC = (value: number) => ({type: 'SET-COUNTER', value} as const)
